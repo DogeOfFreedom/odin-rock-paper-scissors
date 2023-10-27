@@ -1,0 +1,22 @@
+COMPUTER CHOICE
+- get the computer's choice by randomly choosing between 
+    - rock
+    - paper
+    -scissors
+
+PLAYER CHOICE
+- player is prompted to enter their choice
+- input is case INSENSITIVE
+
+GAME
+- Best of 5 rounds
+- Winner is decided on who has the most wins by the end
+
+LOGIC
+1. Prompt the player for input
+2. Generate computer input
+3. Compare player and computer to see who wins
+4. Give point to which player won
+5. Repeat until game has been played 5 times
+6. Compare scores to find winner
+
