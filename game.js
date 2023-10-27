@@ -11,8 +11,12 @@ let getComputerChoice = () => {
     return CHOICES[rand];
 }
 
-let play = () => {
+let play = () => {    
     let playerChoice = prompt("Enter your choice!").toLowerCase();
+    while(!CHOICES.includes(playerChoice)) {
+        playerChoice = prompt("Invalid choice, re-enter your choice!").toLowerCase();
+    }
+
     let computerChoice = getComputerChoice();
 
     console.log(`Player Choice: ${playerChoice}`);
@@ -39,7 +43,7 @@ let play = () => {
 
 let game = () => {
     let roundCounter = 1;
-    let playerScore, cpuScore = 0;
+    let playerScore, computerScore = 0;
 
     while(roundCounter <= 5) {
         let result = play();
@@ -47,14 +51,26 @@ let game = () => {
         if(result !== "draw") {
             if(result === "player") {
                 alertMSG = `THE PLAYER WINS ROUND ${roundCounter}`
+                playerScore++;
             } else {
                 alertMSG = `THE COMPUTER WINS ROUND ${roundCounter}`
+                computerScore++;
             }
         } else {
             alertMSG = `Round ${roundCounter} is a draw`
         }
         alert(alertMSG);
         roundCounter++;
+    }
+
+    if(playerScore > computerScore) {
+        alert("Player Wins");
+    } 
+    else if(computerScore > playerScore) {
+        alert("Computer Wins");
+    }
+    else {
+        alert("It's a draw");
     }
 }
 
