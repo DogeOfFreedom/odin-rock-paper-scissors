@@ -20,3 +20,8 @@ LOGIC
 5. Repeat until game has been played 5 times
 6. Compare scores to find winner
 
+COMPARING CHOICES
+- If same choice, then draw
+- Paper beats rock
+- Rock beats scissors
+- Scissors beat paper
