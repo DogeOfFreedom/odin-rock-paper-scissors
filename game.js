@@ -43,35 +43,47 @@ let play = () => {
 
 let game = () => {
     let roundCounter = 1;
-    let playerScore, computerScore = 0;
+    let playerScore = 0
+    let computerScore = 0;
 
     while(roundCounter <= 5) {
         let result = play();
-        let alertMSG;
+        let alertMsg;
         if(result !== "draw") {
             if(result === "player") {
-                alertMSG = `THE PLAYER WINS ROUND ${roundCounter}`
+                alertMsg = `THE PLAYER WINS ROUND ${roundCounter}`
                 playerScore++;
             } else {
-                alertMSG = `THE COMPUTER WINS ROUND ${roundCounter}`
+                alertMsg = `THE COMPUTER WINS ROUND ${roundCounter}`
                 computerScore++;
             }
         } else {
-            alertMSG = `Round ${roundCounter} is a draw`
+            alertMsg = `Round ${roundCounter} is a draw`
         }
-        alert(alertMSG);
+        alert(alertMsg);
         roundCounter++;
     }
 
+    let gameCompleteMsg;
     if(playerScore > computerScore) {
-        alert("Player Wins");
+        gameCompleteMsg = 
+            "PLAYER WINS\n\n"
+            + "Player Score: " + playerScore
+            + "\nComputer Score: " + computerScore;
     } 
     else if(computerScore > playerScore) {
-        alert("Computer Wins");
+        gameCompleteMsg = 
+            "COMPUTER WINS\n\n"
+            + "Player Score: " + playerScore
+            + "\nComputer Score: " + computerScore;
     }
     else {
-        alert("It's a draw");
+        gameCompleteMsg = 
+            "DRAW\n\n"
+            + "Player Score: " + playerScore
+            + "\nComputer Score: " + computerScore;
     }
+    alert(gameCompleteMsg);
 }
 
 game();
