@@ -14,6 +14,10 @@ let getComputerChoice = () => {
 let play = () => {
     let playerChoice = prompt("Enter your choice!").toLowerCase();
     let computerChoice = getComputerChoice();
+
+    console.log(`Player Choice: ${playerChoice}`);
+    console.log(`CPU Choice: ${computerChoice}`);
+    console.log("");
     
     // Draw
     if(playerChoice === computerChoice) {
@@ -32,3 +36,26 @@ let play = () => {
         return "cpu";
     }
 }
+
+let game = () => {
+    let roundCounter = 1;
+    let playerScore, cpuScore = 0;
+
+    while(roundCounter <= 5) {
+        let result = play();
+        let alertMSG;
+        if(result !== "draw") {
+            if(result === "player") {
+                alertMSG = `THE PLAYER WINS ROUND ${roundCounter}`
+            } else {
+                alertMSG = `THE COMPUTER WINS ROUND ${roundCounter}`
+            }
+        } else {
+            alertMSG = `Round ${roundCounter} is a draw`
+        }
+        alert(alertMSG);
+        roundCounter++;
+    }
+}
+
+game();
