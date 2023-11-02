@@ -1,0 +1,105 @@
+@font-face {
+    font-family: "gameboy";
+    src: url("gameboy.ttf");
+}
+
+* {
+    font-family: "gameboy";
+}
+
+body {
+    background-color: #2b3a63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    height: 100vh;
+    
+}
+
+#mainContainer {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    width: 70%;
+    padding: 20px 5px;
+    border-radius: 15px;
+    box-shadow: 0px 10px #151e39;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+button {
+    background-color: white;
+    color: black;
+    font-size: 24px;
+    border: 4px solid black;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 250px;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 0px 4px #bbbbbb;
+}
+
+.scoreboard {
+    /* flex: auto; */
+    border: 5px solid black;
+    border-radius: 25px;
+    margin: 20px 15px 0px 15px;   
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+/* .scoreboard * {
+    border: 2px solid black;
+} */
+
+.scoreboard div {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    flex: auto;
+    height: 40px;
+}
+
+.scoreboard div p {
+    margin: 0px;
+    font-size: 24px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.left-text {
+    width: 55%;
+    text-align: left;
+}
+
+.right-text {
+    flex: auto;
+}
+
+#round-outcome-div {
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#round-outcome-div p {
+    text-align: center;
+    font-size: 30px;
+    margin: 0px;
+}

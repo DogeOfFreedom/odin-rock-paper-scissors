@@ -4,6 +4,13 @@ const WINNING_MATCHUPS = {
     "scissors" : "paper",
     "paper" : "rock"
 }
+const playerChoiceElement = document.querySelector("#player-choice");
+const computerChoiceElement = document.querySelector("#computer-choice");
+const roundOutcomeElement = document.querySelector("#round-outcome");
+const playerScoreElement = document.querySelector("#player-score");
+const computerScoreElement = document.querySelector("#computer-score");
+let playerScore = 0;
+let computerScore = 0;
 
 let getComputerChoice = () => {
     // Generate random number between 0-2
@@ -11,21 +18,15 @@ let getComputerChoice = () => {
     return CHOICES[rand];
 }
 
-let play = () => {    
-    let playerChoice = prompt("Enter your choice!").toLowerCase();
-    while(!CHOICES.includes(playerChoice)) {
-        playerChoice = prompt("Invalid choice, re-enter your choice!").toLowerCase();
-    }
-
+let play = (playerChoice) => {    
     let computerChoice = getComputerChoice();
+    playerChoiceElement.textContent = playerChoice;
+    computerChoiceElement.textContent = computerChoice;
 
-    console.log(`Player Choice: ${playerChoice}`);
-    console.log(`CPU Choice: ${computerChoice}`);
-    console.log("");
-    
+    let outcomeMsg;
     // Draw
     if(playerChoice === computerChoice) {
-        return "draw";
+        outcomeMsg = "DRAW";
     }
     else {
         // Check if the player won
@@ -33,55 +34,38 @@ let play = () => {
         let playerWin = (win_matchup === computerChoice) 
             ? true
             : false;
-        
-        if(playerWin) {
-            return "player";
-        } 
-        return "cpu";
+        outcomeMsg = playerWin 
+            ? "PLAYER WINS THIS ROUND"
+            : "COMPUTER WINS THIS ROUND";
+        updateScoreboard(playerWin);
+        checkScore();
+    }
+    roundOutcomeElement.textContent = outcomeMsg;
+}
+
+let checkScore = () => {
+    if(playerScore == 5) {
+        alert("PLAYER WINS");
+    }
+    else if(computerScore == 5) {
+        alert("COMPUTER WINS");
     }
 }
 
-let game = () => {
-    let roundCounter = 1;
-    let playerScore = 0
-    let computerScore = 0;
-
-    let result = play();
-    let alertMsg;
-    if(result !== "draw") {
-        if(result === "player") {
-            alertMsg = `THE PLAYER WINS ROUND ${roundCounter}`
-            playerScore++;
-        } else {
-            alertMsg = `THE COMPUTER WINS ROUND ${roundCounter}`
-            computerScore++;
-        }
-    } else {
-        alertMsg = `Round ${roundCounter} is a draw`
-    }
-    alert(alertMsg);
-    roundCounter++;
-
-    let gameCompleteMsg;
-    if(playerScore > computerScore) {
-        gameCompleteMsg = 
-            "PLAYER WINS\n\n"
-            + "Player Score: " + playerScore
-            + "\nComputer Score: " + computerScore;
-    } 
-    else if(computerScore > playerScore) {
-        gameCompleteMsg = 
-            "COMPUTER WINS\n\n"
-            + "Player Score: " + playerScore
-            + "\nComputer Score: " + computerScore;
+let updateScoreboard = (playerWin) => {
+    if(playerWin) {
+        playerScore++;
     }
     else {
-        gameCompleteMsg = 
-            "DRAW\n\n"
-            + "Player Score: " + playerScore
-            + "\nComputer Score: " + computerScore;
+        computerScore++;
     }
-    alert(gameCompleteMsg);
+    playerScoreElement.textContent = playerScore;
+    computerScoreElement.textContent = computerScore;
 }
 
-game();
+const choiceBtns = Array.from(document.getElementsByTagName("button"));
+choiceBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        play(button.value);
+    });
+})
